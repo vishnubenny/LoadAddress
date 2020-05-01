@@ -3,6 +3,7 @@
     package="com.vishnu.loadaddress">
 
     <application
+        android:name=".LoadAddressApp"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
