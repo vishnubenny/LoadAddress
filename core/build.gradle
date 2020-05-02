@@ -42,10 +42,11 @@ dependencies {
     api 'androidx.appcompat:appcompat:1.1.0'
     implementation 'com.google.android.material:material:1.1.0'
 
-    api 'com.github.ReactiveX:RxKotlin:3.0.0'
-
     api "org.koin:koin-core:$koin_version"
     api "org.koin:koin-androidx-viewmodel:$koin_version"
+
+    api 'com.squareup.retrofit2:retrofit:2.8.1'
+    api 'com.squareup.retrofit2:adapter-rxjava2:2.8.1'
 
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
