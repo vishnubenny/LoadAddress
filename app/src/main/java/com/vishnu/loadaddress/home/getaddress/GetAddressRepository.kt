@@ -1,4 +1,4 @@
-package com.vishnu.loadaddress.home
+package com.vishnu.loadaddress.home.getaddress
 
 import com.vishnu.core.getaddress.GetAddressFetcher
 import com.vishnu.core.getaddress.model.ApiAddress
@@ -17,7 +17,8 @@ class GetAddressRepository(private val fetcher: GetAddressFetcher) {
 
     private fun getQueryParam(searchLocation: String): Map<String, String> {
         val queryParam = mutableMapOf<String, String>()
-        queryParam[API_REQUEST_MAP_QUERY_STRING_PARAM] = CONFIGURABLE_API_QUERY_STRING_VALUE
+        queryParam[API_REQUEST_MAP_QUERY_STRING_PARAM] =
+            CONFIGURABLE_API_QUERY_STRING_VALUE
         queryParam[API_REQUEST_MAP_CITY_PARAM] = searchLocation
         return queryParam
     }

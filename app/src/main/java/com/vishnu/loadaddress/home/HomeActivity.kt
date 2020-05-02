@@ -1,5 +1,6 @@
 package com.vishnu.loadaddress.home
 
+import android.os.Bundle
 import com.vishnu.core.BaseActivity
 import com.vishnu.loadaddress.BR
 import com.vishnu.loadaddress.R
@@ -21,5 +22,10 @@ class HomeActivity : BaseActivity<HomeNavigator, ActivityHomeBinding, HomeViewMo
     override fun getBindingVariable(): Int = BR.viewModel
 
     override fun getNavigator(): HomeNavigator = listener
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        homeViewModel.getAddress()
+    }
 
 }
