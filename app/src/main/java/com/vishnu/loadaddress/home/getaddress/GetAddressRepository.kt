@@ -2,12 +2,11 @@ package com.vishnu.loadaddress.home.getaddress
 
 import com.vishnu.core.extension.getText
 import com.vishnu.core.getaddress.GetAddressFetcher
+import com.vishnu.loadaddress.util.rx.AppScheduler
 import io.reactivex.Observable
 import io.reactivex.ObservableSource
 import io.reactivex.ObservableTransformer
-import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.functions.Function
-import io.reactivex.schedulers.Schedulers
 
 private const val CONFIGURABLE_API_QUERY_STRING_VALUE = "airtel"
 private const val API_REQUEST_MAP_QUERY_STRING_PARAM = "queryString"
@@ -15,7 +14,8 @@ private const val API_REQUEST_MAP_CITY_PARAM = "city"
 
 class GetAddressRepository(
     private val fetcher: GetAddressFetcher,
-    private val addressViewStateConverter: AddressViewStateConverter
+    private val addressViewStateConverter: AddressViewStateConverter,
+    private val appScheduler: AppScheduler
 ) {
 
     fun getAddress(searchLocation: String): Observable<AddressViewState> {
@@ -24,8 +24,8 @@ class GetAddressRepository(
             .map(addressViewStateConverter)
             .startWith(AddressViewState.Loading)
             .compose(GetAddressErrorConverter())
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
+            .subscribeOn(appScheduler.io())
+            .observeOn(appScheduler.main())
     }
 
     private fun getQueryParam(searchLocation: String): Map<String, String> {

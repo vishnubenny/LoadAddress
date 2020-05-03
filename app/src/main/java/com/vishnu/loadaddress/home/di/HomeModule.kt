@@ -7,6 +7,7 @@ import com.vishnu.loadaddress.home.HomeRepository
 import com.vishnu.loadaddress.home.HomeViewModel
 import com.vishnu.loadaddress.home.getaddress.AddressViewStateConverter
 import com.vishnu.loadaddress.home.getaddress.GetAddressRepository
+import com.vishnu.loadaddress.util.rx.AppScheduler
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 import retrofit2.Retrofit
@@ -17,7 +18,8 @@ val homeModule = module {
     factory { AddressConverter() }
     factory { GetAddressFetcher(get(), get()) }
     factory { AddressViewStateConverter() }
-    factory { GetAddressRepository(get(), get()) }
+    factory { AppScheduler() }
+    factory { GetAddressRepository(get(), get(), get()) }
 
     factory { HomeRepository(get()) }
     viewModel { HomeViewModel(get()) }
